@@ -1,0 +1,21 @@
+name: repro
+on: [push, workflow_dispatch]
+jobs:
+  repro:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm ci
+      - name: Run downstream (expected exit 1, actual 130)
+        env:
+          NX_DAEMON: "false"
+          NX_SKIP_NX_CACHE: "true"
+        run: |
+          set +e
+          npx nx run proj:downstream
+          code=$?
+          echo "exit code: $code"
+          test "$code" -eq 1

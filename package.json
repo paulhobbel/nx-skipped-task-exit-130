@@ -1,0 +1,10 @@
+{
+  "name": "nx-skipped-task-exit-130",
+  "private": true,
+  "scripts": {
+    "repro": "nx run proj:downstream; echo \"exit code: $?\""
+  },
+  "devDependencies": {
+    "nx": "23.3.0"
+  }
+}

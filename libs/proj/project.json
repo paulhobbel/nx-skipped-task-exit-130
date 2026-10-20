@@ -1,0 +1,11 @@
+{
+  "name": "proj",
+  "targets": {
+    "upstream": { "executor": "nx:run-commands", "options": { "command": "exit 1" } },
+    "downstream": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["upstream"],
+      "options": { "command": "echo ok" }
+    }
+  }
+}
